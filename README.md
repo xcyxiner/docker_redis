@@ -12,6 +12,8 @@ redis docker container
 * [docker：创建Redis主从](https://lw900925.github.io/docker/docker-redis-cluster.html)
 
 ## tree
+
+```
 redis_master_slave/
 ├── conf   --redis.conf目录
 │   ├── redis-master.conf
@@ -28,6 +30,7 @@ redis_master_slave/
 │   └── dump.rdb
 └── redis-slave2-data  --数据存储
     └── dump.rdb
+```
 
 ## how to use
 
