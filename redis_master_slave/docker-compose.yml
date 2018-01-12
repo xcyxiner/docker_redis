@@ -1,21 +1,27 @@
-redis-master:
-      build: ./redis
-      volumes:
-          - ./conf/redis-master.conf:/usr/local/etc/redis/redis.conf
-          - ./master-data:/data
-      ports:
-          - "6379:6379"
-redis-slave1:
-      build: ./redis
-      volumes:
-          - ./conf/redis-slave1.conf:/usr/local/etc/redis/redis.conf
-          - ./redis-slave1-data:/data
-      links:
-          - redis-master:master
-redis-slave2:
-      build: ./redis
-      volumes:
-          - ./conf/redis-slave2.conf:/usr/local/etc/redis/redis.conf
-          - ./redis-slave2-data:/data
-      links:
-          - redis-master:master
+version: '2'
+networks:
+  default:
+    external:
+      name: testwifi
+services:
+    redis-master:
+          build: ./redis
+          volumes:
+              - ./conf/redis-master.conf:/usr/local/etc/redis/redis.conf
+              - ./master-data:/data
+          ports:
+              - "6379:6379"
+    redis-slave1:
+          build: ./redis
+          volumes:
+              - ./conf/redis-slave1.conf:/usr/local/etc/redis/redis.conf
+              - ./redis-slave1-data:/data
+          links:
+              - redis-master:master
+    redis-slave2:
+          build: ./redis
+          volumes:
+              - ./conf/redis-slave2.conf:/usr/local/etc/redis/redis.conf
+              - ./redis-slave2-data:/data
+          links:
+              - redis-master:master
