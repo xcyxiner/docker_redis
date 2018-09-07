@@ -1,0 +1,34 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: aaa
+services:
+    redis-slave1:
+          container_name: "redis-slave1"
+          build: ./redis
+          volumes:
+              - ./conf/redis-slave1.conf:/usr/local/etc/redis/redis.conf
+              - ./redis-slave1-data:/data
+          restart: always
+    redis-slave2:
+          container_name: "redis-slave2"
+          build: ./redis
+          volumes:
+              - ./conf/redis-slave2.conf:/usr/local/etc/redis/redis.conf
+              - ./redis-slave2-data:/data
+          restart: always
+    redis-sentinel:
+          container_name: "redis-sentinel"
+          build: ./sentinel
+          volumes:
+              - ./conf/redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf
+              - ./redis-sentinel-data:/data
+          restart: always
+    redis-sentinel1:
+          container_name: "redis-sentinel1"
+          build: ./sentinel
+          volumes:
+              - ./conf/redis-sentinel1.conf:/usr/local/etc/redis/sentinel.conf
+              - ./redis-sentinel1-data:/data
+          restart: always

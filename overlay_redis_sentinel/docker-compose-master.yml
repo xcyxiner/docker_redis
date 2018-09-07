@@ -1,0 +1,15 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: aaa
+services:
+    redis-master:
+          container_name: "redis-master"
+          build: ./redis
+          volumes:
+              - ./conf/redis-master.conf:/usr/local/etc/redis/redis.conf
+              - ./master-data:/data
+          ports:
+              - "6379:6379"
+          restart: always
