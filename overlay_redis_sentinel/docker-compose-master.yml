@@ -12,4 +12,9 @@ services:
               - ./master-data:/data
           ports:
               - "6379:6379"
+          networks:
+           default:
+             ipv4_address: 10.0.0.50
+             aliases:
+              - redis-master
           restart: always

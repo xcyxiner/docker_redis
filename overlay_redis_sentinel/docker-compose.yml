@@ -10,6 +10,11 @@ services:
           volumes:
               - ./conf/redis-slave1.conf:/usr/local/etc/redis/redis.conf
               - ./redis-slave1-data:/data
+          networks:
+           default:
+             ipv4_address: 10.0.0.51
+             aliases:
+              - redis-slave1
           restart: always
     redis-slave2:
           container_name: "redis-slave2"
@@ -17,6 +22,11 @@ services:
           volumes:
               - ./conf/redis-slave2.conf:/usr/local/etc/redis/redis.conf
               - ./redis-slave2-data:/data
+          networks:
+           default:
+             ipv4_address: 10.0.0.52
+             aliases:
+              - redis-slave2
           restart: always
     redis-sentinel:
           container_name: "redis-sentinel"
@@ -24,6 +34,11 @@ services:
           volumes:
               - ./conf/redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf
               - ./redis-sentinel-data:/data
+          networks:
+           default:
+             ipv4_address: 10.0.0.61
+             aliases:
+              - redis-sentinel
           restart: always
     redis-sentinel1:
           container_name: "redis-sentinel1"
@@ -31,4 +46,9 @@ services:
           volumes:
               - ./conf/redis-sentinel1.conf:/usr/local/etc/redis/sentinel.conf
               - ./redis-sentinel1-data:/data
+          networks:
+           default:
+             ipv4_address: 10.0.0.62
+             aliases:
+              - redis-sentinel1
           restart: always
